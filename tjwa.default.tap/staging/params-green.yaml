@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
- name: tjwa-params
+ name: tjwa-green-params
 stringData:
  values.yaml: |
    ---

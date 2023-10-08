@@ -2,13 +2,13 @@
 apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageInstall
 metadata:
- name: my-tjwa
+ name: tjwa-green
 spec:
  serviceAccountName: default # ServiceAccount on run cluster with permissions to deploy Package, see "Set up run Cluster Namespaces"
  packageRef:
    refName: tjwa.default.tap # name of the Package
    versionSelection:
-     constraints: 20231007210344.0.0+build.6db88c7 # version of the Package
+     constraints: ">=0.0.0" # version of the Package
  values:
  - secretRef:
-     name: tjwa-params # Secret created in previous step
+     name: tjwa-green-params # Secret created in previous step
