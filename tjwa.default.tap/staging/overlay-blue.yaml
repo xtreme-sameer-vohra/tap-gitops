@@ -1,0 +1,26 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: overlay-blue
+  namespace: default
+stringData:
+  custom-package-overlay.yaml: |
+    #@ load("@ytt:overlay", "overlay")
+
+    #@ kd = overlay.subset({"apiVersion":"apps/v1", "kind": "Deployment"})
+    #@ ks = overlay.subset({"apiVersion":"v1", "kind": "Service"})
+    #@ ki = overlay.subset({"apiVersion":"networking.k8s.io/v1", "kind": "Ingress"})
+    #@ na = overlay.subset({"metadata":{"name":"tjwa"}})
+
+    #@overlay/match by=overlay.and_op(kd, na)
+    ---
+    metadata:
+      #@overlay/replace
+      name: tjwa-blue
+
+    #@overlay/match by=overlay.and_op(ks, na)
+    ---
+    metadata:
+      #@overlay/replace
+      name: tjwa-blue
