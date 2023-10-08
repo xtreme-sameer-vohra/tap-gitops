@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+ name: tjwa-params
+stringData:
+ values.yaml: |
+   ---
+   workload_name: tjwa
+   replicas: 1
+   hostname: tjwa-green.34.145.182.18.nip.io
