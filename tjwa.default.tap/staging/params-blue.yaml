@@ -8,4 +8,5 @@ stringData:
    ---
    workload_name: tjwa-blue
    replicas: 1
-   hostname: tjwa-blue.34.145.182.18.nip.io
+   hostname: tjwa-blue.snative.dev
+   cluster_issuer: gcp-clouddns

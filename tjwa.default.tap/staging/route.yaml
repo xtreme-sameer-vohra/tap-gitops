@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   virtualhost:
-    fqdn: tjwa.34.145.182.18.nip.io
+    fqdn: tjwa.snative.dev
     tls:
       secretName: tjwa-route-cert
   routes:
@@ -27,11 +27,11 @@ metadata:
   namespace: default
 spec:
   dnsNames:
-    - tjwa.34.145.182.18.nip.io
+    - tjwa.snative.dev
   issuerRef:
     group: cert-manager.io
     kind: ClusterIssuer
-    name: tap-ingress-selfsigned
+    name: gcp-clouddns
   secretName: tjwa-route-cert
   usages:
     - digital signature
