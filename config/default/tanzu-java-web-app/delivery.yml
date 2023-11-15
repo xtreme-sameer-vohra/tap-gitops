@@ -46,7 +46,7 @@ spec:
       - env:
         - name: JAVA_TOOL_OPTIONS
           value: -Dmanagement.endpoint.health.probes.add-additional-paths="true" -Dmanagement.health.probes.enabled="true" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
-        image: us-central1-docker.pkg.dev/vsameer-sandbox/build-service/tbs/tanzu-java-web-app-default@sha256:8edf9df0310314903a94a0c066b6e0defd7e4cb39b2d80b1eb967231874b1b6b
+        image: us-central1-docker.pkg.dev/vsameer-sandbox/build-service/tbs/tanzu-java-web-app-default@sha256:9787c208c5e289bc5071e57d5a99f9b64ee09cd3eeee3ec912be720df92b6d72
         livenessProbe:
           httpGet:
             path: /livez
