@@ -1,0 +1,70 @@
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  name: tjwa.my-apps.sameer.20240402140246.0.0+build.6db88c7
+spec:
+  refName: tjwa.my-apps.sameer
+  version: 20240402140246.0.0+build.6db88c7
+  releaseNotes: |
+    Release v20240402140246.0.0+build.6db88c7 of package tjwa.my-apps.sameer
+  template:
+    spec:
+      fetch:
+      - imgpkgBundle:
+          image: us-west2-docker.pkg.dev/shepherd-v2-environment-1/sh2-wilt-1055339-oci-registry/workloads/tjwa-my-apps-bundle@sha256:db0d222c1b9475e10c0467045a5985f909ca2729d4b02bb0faa2acfca9cd5136
+      template:
+      - ytt:
+          paths:
+          - .
+      - kbld:
+          paths:
+          - .imgpkg/images.yml
+          - '-'
+      deploy:
+      - kapp: {}
+  valuesSchema:
+    openAPIv3:
+      type: object
+      additionalProperties: false
+      properties:
+        workload_name:
+          title: Workload name
+          type: string
+          default: ""
+        replicas:
+          title: Replicas
+          type: integer
+          default: 1
+        port:
+          title: Port
+          type: integer
+          default: 8080
+        hostname:
+          title: Hostname
+          type: string
+          default: ""
+        cluster_issuer:
+          title: Cluster Issuer
+          type: string
+          default: tap-ingress-selfsigned
+        http_route:
+          type: object
+          additionalProperties: false
+          nullable: true
+          properties:
+            gateways:
+              type: array
+              items:
+                type: object
+                additionalProperties: false
+                properties:
+                  protocol:
+                    type: string
+                    default: ""
+                  name:
+                    type: string
+                    default: ""
+              default:
+              - protocol: https
+                name: default-gateway
+
