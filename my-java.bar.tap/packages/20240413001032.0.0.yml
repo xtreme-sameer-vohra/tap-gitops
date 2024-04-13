@@ -1,0 +1,33 @@
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  name: my-java.bar.tap.20240413001032.0.0+build.6db88c7
+spec:
+  refName: my-java.bar.tap
+  version: 20240413001032.0.0+build.6db88c7
+  releaseNotes: |
+    Release v20240413001032.0.0+build.6db88c7 of package my-java.bar.tap
+  template:
+    spec:
+      fetch:
+      - imgpkgBundle:
+          image: us-west2-docker.pkg.dev/shepherd-v2-environment-1/sh2-vane-1148605-oci-registry/workloads/my-java-bar-bundle@sha256:3aaa4f0940274e7425303f52d16eb4a3654fce2c7ec259c00211864ba622894b
+      template:
+      - ytt:
+          paths:
+          - .
+      - kbld:
+          paths:
+          - .imgpkg/images.yml
+          - '-'
+      deploy:
+      - kapp: {}
+  valuesSchema:
+    openAPIv3:
+      type: object
+      additionalProperties: false
+      properties:
+        workload_name:
+          type: string
+          default: ""
+
